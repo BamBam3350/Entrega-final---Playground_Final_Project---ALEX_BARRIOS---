@@ -1,0 +1,32 @@
+<!-- buscar_posts.html -->
+{% extends 'blog/base.html' %}
+
+{% block title %}Buscar Posts | Mi Blog{% endblock %}
+
+{% block content %}
+    <h2>Buscar Posts</h2>
+
+    <form method="GET" action="{% url 'buscar_posts' %}">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="buscar" name="buscar" placeholder="Buscar posts..." value="{{ request.GET.buscar }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <h3 class="mt-4">Resultados</h3>
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.titulo }}</h5>
+                        <p class="card-text">{{ post.contenido|slice:":100" }}...</p>
+                        <a href="{% url 'detalle_post' post.id %}" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No se encontraron posts para esta búsqueda.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
