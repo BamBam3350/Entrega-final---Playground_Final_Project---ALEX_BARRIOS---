@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Categoria
+from .models import Post
 from .forms import PostForm
 from django.core.paginator import Paginator
 
 def inicio(request):
     posts = Post.objects.all()
-    paginator = Paginator(posts, 5)  # Muestra 5 posts por página
+    paginator = Paginator(posts, 5)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'blog/inicio.html', {'page_obj': page_obj})
@@ -14,8 +14,8 @@ def agregar_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()  # Guardar el nuevo post
-            return redirect('inicio')  # Redirigir al inicio, o a donde prefieras
+            form.save()  
+            return redirect('inicio')  
     else:
         form = PostForm()
 
