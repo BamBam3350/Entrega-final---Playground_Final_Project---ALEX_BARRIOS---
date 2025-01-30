@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Lista de Blogs</h1>
+
+    <a href="{% url 'blog:create_page' %}" class="btn btn-primary mb-3">Crear nuevo blog</a>
+
+    {% if pages %}
+      <div class="list-group">
+        {% for page in pages %}
+          {% if page.slug %}
+            <a href="{% url 'blog:page_detail' page.slug %}" class="list-group-item list-group-item-action">
+              <h5 class="mb-1">{{ page.title }}</h5>
+              <p class="mb-1">{{ page.created_at|date:"D, d M Y" }}</p>
+            </a>
+            
+            <div class="d-flex justify-content-between mt-2">
+              <a href="{% url 'blog:update_page' page.slug %}" class="btn btn-warning btn-sm">Editar</a>
+              <a href="{% url 'blog:delete_page' page.slug %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+          {% else %}
+            <p>Esta página no tiene un enlace disponible.</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No hay blogs aún.</p>
+    {% endif %}
+  </div>
+{% endblock %}

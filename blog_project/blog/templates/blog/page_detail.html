@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">{{ page.title }}</h1>
+
+    <p class="lead">{{ page.content|safe }}</p>
+
+    {% if page.image %}
+      <div class="my-4">
+        <img src="{{ page.image.url }}" alt="{{ page.title }}" class="img-fluid">
+      </div>
+    {% endif %}
+
+    <hr>
+
+    <div class="d-flex justify-content-between">
+      <p class="text-muted mb-0">Publicado el: {{ page.created_at|date:"D, d M Y" }}</p>
+      <a href="{% url 'blog:page_list' %}" class="btn btn-secondary btn-sm">Volver a la lista</a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+    <h1 style="font-size: 2rem; margin-bottom: 20px; color: #dc3545;">¿Estás seguro de que deseas eliminar esta página?</h1>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div style="margin-bottom: 20px;">
+        <p style="font-size: 1.1rem; color: #555;">Esta acción no se puede deshacer. Si eliminas esta página, perderás todo su contenido.</p>
+      </div>
+      <div>
+        <button type="submit" style="padding: 12px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease;">
+          Eliminar Página
+        </button>
+      </div>
+    </form>
+    <div style="margin-top: 20px;">
+      <a href="{% url 'blog:home' %}" style="color: #007bff; text-decoration: none; font-size: 1rem;">Cancelar y volver al inicio</a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Regístrate</h2>
+    
+    <div class="card shadow-lg">
+      <div class="card-body">
+        {% if messages %}
+          <div class="alert alert-danger">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="form-group mb-3">
+            <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+            <input type="text" name="username" id="{{ form.username.id_for_label }}" class="form-control" value="{{ form.username.value }}">
+            {% if form.username.errors %}
+              <div class="text-danger">
+                {% for error in form.username.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="{{ form.email.id_for_label }}">Correo electrónico</label>
+            <input type="email" name="email" id="{{ form.email.id_for_label }}" class="form-control" value="{{ form.email.value }}">
+            {% if form.email.errors %}
+              <div class="text-danger">
+                {% for error in form.email.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+            <input type="password" name="password1" id="{{ form.password1.id_for_label }}" class="form-control" value="{{ form.password1.value }}">
+            {% if form.password1.errors %}
+              <div class="text-danger">
+                {% for error in form.password1.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="{{ form.password2.id_for_label }}">Confirmar contraseña</label>
+            <input type="password" name="password2" id="{{ form.password2.id_for_label }}" class="form-control" value="{{ form.password2.value }}">
+            {% if form.password2.errors %}
+              <div class="text-danger">
+                {% for error in form.password2.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-success btn-block">Registrarse</button>
+          </div>
+        </form>
+        
+        <div class="text-center mt-3">
+          <p>¿Ya tienes cuenta? <a href="{% url 'blog:login' %}">Inicia sesión</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

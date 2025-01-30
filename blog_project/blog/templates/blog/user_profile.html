@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil de Usuario</title>
+</head>
+<body>
+    <h1>{{ user_profile.user.username }}'s Profile</h1>
+    <img src="{{ user_profile.avatar.url }}" alt="Avatar" width="200" height="200">
+    <p><strong>Biografía:</strong> {{ user_profile.biography }}</p>
+    <p><strong>Fecha de Nacimiento:</strong> {{ user_profile.birthday }}</p>
+</body>
+</html>

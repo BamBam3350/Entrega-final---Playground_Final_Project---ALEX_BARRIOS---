@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center">Mi Perfil</h2>
+
+    <div class="card shadow-lg mt-4">
+      <div class="card-body">
+        <h3 class="card-title">Detalles del Usuario</h3>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          <div class="form-group mb-3">
+            <label for="{{ user_form.username.id_for_label }}">Nombre de usuario</label>
+            <input type="text" name="username" class="form-control" value="{{ user_form.username.value }}">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="{{ user_form.email.id_for_label }}">Correo electrónico</label>
+            <input type="text" name="email" class="form-control" value="{{ user_form.email.value }}">
+          </div>
+
+          <h3 class="mt-4">Detalles del Perfil</h3>
+
+          <div class="form-group mb-3">
+            <label for="{{ profile_form.avatar.id_for_label }}">Avatar</label>
+            <input type="file" name="avatar" class="form-control-file">
+          </div>
+
+          <div class="form-group mb-3">
+            <p>Avatar Actual:</p>
+            {% if profile_form.instance.avatar %}
+              <img src="{{ profile_form.instance.avatar.url }}" alt="Avatar" class="img-thumbnail" style="max-width: 200px;">
+            {% else %}
+              <img src="{% static 'images/default_avatar.png' %}" alt="Avatar Predeterminado" class="img-thumbnail" style="max-width: 200px;">
+            {% endif %}
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="{{ profile_form.biography.id_for_label }}">Biografía</label>
+            <textarea name="biography" class="form-control">{{ profile_form.biography.value }}</textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="{{ profile_form.birthday.id_for_label }}">Fecha de nacimiento</label>
+            <input type="date" name="birthday" class="form-control" value="{{ profile_form.birthday.value }}">
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

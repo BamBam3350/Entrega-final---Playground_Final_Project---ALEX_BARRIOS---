@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Sobre Nosotros - Mi Blog{% endblock %}
+
+{% load static %}
+
+{% block content %}
+  <h1 class="text-center mb-4">Sobre mí</h1>
+  
+  <div class="d-flex flex-column align-items-center">
+    <div>
+      <img src="{% static 'images/BamBam.jpeg' %}" alt="Imagen sobre mí" class="img-fluid rounded-circle" style="width: 400px; height: 400px;">
+    </div>
+
+    <div class="mt-4 text-center">
+      <p>¡Hola Mundo! Mi nombres es Barrios Alex Martín, soy bailarín y futuro programador de videojuegos, ¿un poco ambisioso no? Pues es la motivación que me mantiene a flote, poseo un seudónimo "BamBam", es una larga historia del porque tengo ese apodo, pero por ahora podrás quedarte con que es monograma de mi apellido y 2 nombres</p>
+      <p>¿Por qué quiero ser programador de videojuegos? Siempre me gustó la idea de crear mi propia historia, tengo muchas ganas de explayar una historia creativa, intrigante y atrapante, ¿Qué mejor manera que hacerlo con algo que me encanta desde pequeño como lo son los videojuegos y los números (programación)? También motiva mucho el hecho de tener una novia graduada en programación y diseño de videojuegos, ella misma lo dice que apesta programando, pero es muy buena diseñando, mami no esperes más acá llegará tu programador y junto nos haremos la vida que siempre quisimos. </p>
+    </div>
+  </div>
+  
+{% endblock %}
