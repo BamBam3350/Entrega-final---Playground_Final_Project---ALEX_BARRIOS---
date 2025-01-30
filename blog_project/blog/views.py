@@ -100,6 +100,9 @@ def logout_view(request):
 def profile_view(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
+    user_form = UserProfileForm(instance=request.user)
+    profile_form = ProfileForm(instance=user_profile)
+
     if request.method == 'POST':
         user_form = UserProfileForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
@@ -110,7 +113,6 @@ def profile_view(request):
             return redirect('blog:profile') 
         else:
             messages.error(request, "Hubo un error al guardar los cambios.") 
-        user_form = UserProfileForm(instance=request.user)
-        profile_form = ProfileForm(instance=user_profile)
 
     return render(request, 'blog/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
